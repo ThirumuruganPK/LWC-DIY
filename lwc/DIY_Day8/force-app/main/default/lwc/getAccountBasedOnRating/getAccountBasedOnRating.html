@@ -1,0 +1,26 @@
+<template>
+    <lightning-card  variant="Narrow"  title="Account Details Based on Rating" >
+        <div class="slds-var-m-around_medium">
+        <lightning-combobox
+            name="Rating"
+            label="Rating"
+            value={ratingValue}
+            placeholder="Select Rating"
+            options={ratingOptions}
+            onchange={handleRatingChange} >
+        </lightning-combobox>
+        <br><br>
+            <template if:true={accountData}>
+                <template for:each={accountData} for:item="eachAccount">
+                    <div key={eachAccount.Id}>
+                            <div class="slds-box">
+                                <h1>Id: {eachAccount.Id}</h1>
+                                <h1>Name: {eachAccount.Name}</h1>
+                                <h1>Rating: {eachAccount.Rating}</h1>
+                            </div>
+                    </div>
+                </template>
+            </template>
+        </div>
+    </lightning-card>
+</template>

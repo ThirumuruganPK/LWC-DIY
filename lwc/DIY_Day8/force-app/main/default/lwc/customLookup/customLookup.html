@@ -1,0 +1,193 @@
+<template>
+    <lightning-messages></lightning-messages>
+    <!--
+        <template if:true={showAlert}>
+                <section role="dialog" tabindex="-1" aria-label="Meaningful description of the modal content" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+                    <div class="slds-modal__container">
+                        
+                            
+                            <div class="demo-only" style="height:4rem">
+                <div class="slds-notify_container slds-is-relative">
+                <div class="slds-notify slds-notify_toast slds-theme_success" role="status">
+                <span class="slds-assistive-text">success</span>
+                <span class="slds-icon_container slds-icon-utility-success slds-m-right_small slds-no-flex slds-align-top" title="Description of icon when needed">
+                </span>
+                <div class="slds-notify__content">
+                <h2 class="slds-text-heading_small ">Account <b>{showAlertAccountName}</b> was created Successfully !</h2>
+                </div>
+                <div class="slds-notify__close">
+                <button class="slds-button slds-button_icon slds-button_icon-inverse" title="Close" onclick={handleAlertCancel}>
+                    <lightning-icon icon-name="utility:close" alternative-text="close" variant="inverse" size="small" ></lightning-icon>
+                <span class="slds-assistive-text">Close</span>
+                </button>
+                </div>
+                </div>
+                </div>
+                </div>
+
+                    </div>
+                </section>
+                <div class="slds-backdrop slds-backdrop_open"></div>   
+        </template>
+    -->
+    <div class="slds-grid slds-gutters">
+        <div class="slds-col slds-size_1-of-3">
+            <span></span>
+        </div>
+        <div class="slds-col slds-size_1-of-3">
+
+            <!-- START ACCOUNT SEARCH AND CREATE NEW-->
+            <div class="slds-m-around_medium">
+                <div class={className}>
+                    <template if:true={label}>
+                        <p class="slds-form-element__label">
+                            <template if:false={required}>
+                                <span class="requiredAsterisk">*</span>
+                            </template>
+                            {label}
+                        </p>
+                    </template>
+                    <div class="slds-combobox_container" aria-expanded="true" aria-haspopup="listbox" role="combobox">
+                        <div class="slds-combobox slds-dropdown-trigger slds-dropdown-trigger_click slds-is-open">
+                            <!-- Search Input Box -->
+                            <template if:false={showPill}>
+                                <lightning-input onchange={searchRecords} onclick={showRecords} onblur={blurEvent} class="inputBox" type="search" autocomplete="off" placeholder={placeholder} ></lightning-input>
+                                <div if:true={showSpinner}>
+                                    <lightning-spinner alternative-text="Loading" size="small"></lightning-spinner>
+                                </div>
+                            </template>
+            
+                            <!-- Selected Value Pill -->
+                            <div if:true={showPill} class="pillContainer">
+                                <lightning-pill class="fullWidth" label={selectedRecord.label} name={selectedRecord.value} onremove={removeItem} >
+                                    <lightning-icon icon-name={iconName} alternative-text="icon" size="x-small"></lightning-icon>
+                                </lightning-pill>
+                            </div>
+                            
+                            <!-- Dropdown List -->
+                            <template if:true={showDropdown}>
+                                <div class="slds-dropdown slds-dropdown_length-5 slds-dropdown_fluid" >
+                                    <ul class="slds-listbox slds-listbox_vertical recordListBox" >
+                                        <template if:false={message} >
+                                            <template for:each={recordsList} for:item="rec">
+                                                <li key={rec.value} data-key={rec.value} class="slds-listbox__item eachItem" onmousedown={selectItem}>
+                                                    <div class="slds-media slds-listbox__option_entity">
+                                                        <lightning-icon icon-name={iconName} alternative-text="icon" size="small"></lightning-icon>
+                                                        <span class="verticalAlign slds-truncate">{rec.label}</span>
+                                                    </div>
+                                                </li>
+                                            </template>
+                                        </template>
+                                        <template if:true={message} >
+                                            <li class="slds-listbox__item">
+                                                <span class="slds-media slds-listbox__option_entity">{message}</span>
+                                            </li>
+                                        </template>
+                                    </ul>
+                                </div>
+                            </template>
+                        </div>
+                    </div>
+                </div>
+                <!-- END ACCOUNT SEARCH AND CREATE NEW-->
+
+                <!-- START REMAINING INPUT FILEDS-->
+                <br/>
+                <lightning-combobox
+                    name="dumpstersize"
+                    label="Dumpster Size"
+                    value={dumpsterSizevalue}
+                    placeholder="Select the Dumpster Size"
+                    options={options}
+                    onchange={handleDumpsterSizeChange}  required>
+                </lightning-combobox>
+                <br/>
+                <lightning-input type="date" label="Delivery Date" placeholder="Pick the Date"  onchange={handleChange} required></lightning-input>
+                <br/>
+                <lightning-combobox
+                    name="deliverytime"
+                    label="Delivery Time"
+                    value={timeValue}
+                    placeholder="Select the Time"
+                    options={timeoptions}
+                    onchange={handleTimeChange} required>
+                </lightning-combobox>
+                <br/>
+                <lightning-input type="text" label="Comments" placeholder="Type Your Comments"  onchange={handleChange}></lightning-input>    
+                <br/>
+                <lightning-input type="tel" label="Phone" placeholder="Type Your Phone Number"  onchange={handleChange} ></lightning-input>    
+                <br/>
+                <lightning-input type="text" label="Purchase Order" placeholder="Type Your Purchase Order Number" onchange={handleChange} ></lightning-input>    
+                <hr/>
+                <lightning-input-address
+                    address-label="Address"
+                    street-label="Street"
+                    city-label="City"
+                    country-label="Country"
+                    province-label="State"
+                    postal-code-label="Zip Code"
+                    street=""
+                    city=""
+                    country=""
+                    province="TX"
+                    postal-code=""
+                    required
+                    show-address-lookup
+                    address-lookup-placeholder="Search Your Address"
+                    onchange={genericInputChange}
+                    >
+                </lightning-input-address>
+                <hr/>
+                <!--<lightning-input type="text" label="Address" placeholder="Type the Address" onchange={handleChange} required></lightning-input> -->
+                <lightning-radio-group 
+                    name="Card Details"
+                    label="Card Details"
+                    options={cardDetailsOptions}
+                    value={cardDetailsValue}
+                    type="radio"
+                    required
+                    onchange={handleChange} >
+                </lightning-radio-group>
+                
+                <template if:true={isShowNewCardDetails}> 
+                    <br/>
+                    <br/>
+                    <lightning-input type="number" variant="standard" name="Card Number" label="Card Number" placeholder="Type Your Card Number" onchange={handleChange} required></lightning-input>
+                    <br/>
+                    <lightning-input type="number" variant="standard" name="Expiration Month" label="Expiration Month" placeholder="Type Your Card Expire Month" max="12" max-length="2" onchange={handleChange} required></lightning-input>
+                    <br/>
+                    <lightning-input type="number" variant="standard" name="Expiration Year" label="Expiration Year" placeholder="Type Your Card Expire Year" max-length="4" onchange={handleChange} required></lightning-input>
+                    <br/>
+                    <lightning-input type="number" variant="standard" name="Security Code" label="Security Code" placeholder="Type Your Security Code" onchange={handleChange} required></lightning-input>
+                    <br/>
+                    <lightning-input type="number" variant="standard" name="Billing Zip Code" label="Billing Zip Code" placeholder="Type Your Billing Zip Code" onchange={handleChange} required></lightning-input>
+                    <br/>
+                </template>
+
+                <!-- END REMAINING INPUT FILEDS-->
+
+                <!-- START SUBMIT AND CANCEL-->
+                <br/>
+                <span  class="slds-m-left_x-large"></span>
+                <span  class="slds-m-left_x-large"></span>
+                <span  class="slds-m-left_x-large"></span>
+                <button class="slds-button slds-button_success" onclick={handleDumpsterCreate}>Submit</button>
+                <span  class="slds-m-left_medium"></span>
+                <a href="https://test-haulbrooke.cs61.force.com/newDelivery" target="_self" >
+                <!--<a href="https://haulbrooke.secure.force.com/newdelivery" target="_self" > -->
+                <button class="slds-button slds-button_destructive slds-m-left_medium" >Cancel</button>
+                </a>
+                <!-- END SUBMIT AND CANCEL-->
+
+            </div>
+            
+        </div>
+        <div class="slds-col slds-size_1-of-3">
+            <br/>
+            <br/>
+            <!-- START NEW ACCOUNT CREATE-->
+            <lightning-button variant="brand" label="New Account" title="Primary action" onclick={handleNewAccountCreation}></lightning-button>
+            <!-- END NEW ACCOUNT CREATE-->
+        </div>
+    </div>
+</template>

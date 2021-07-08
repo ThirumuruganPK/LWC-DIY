@@ -1,0 +1,40 @@
+<template>
+    <lightning-card  title="Employee Information">
+        <lightning-input  class="slds-m-left_x-small" type="number" name="input3" label="Salary Amount"  placeholder="type here..." value={inputSalary} onchange={handleInputSalary} ></lightning-input>
+        <br/>
+        <lightning-button variant="brand-outline" label="Get Employee Details"  class="slds-m-left_x-small" onclick={handleFilterEmployee} ></lightning-button>
+        <lightning-button variant="brand-outline" label="Clear"  class="slds-m-left_x-small" onclick={handleClear} ></lightning-button>
+
+        <hr/>
+    <template if:true={isFirstTime}>
+        <!--using template-->
+      <template for:each={employees} for:item="employee">
+        <div key={employee.id}>
+            <P>{employee.name} {employee.salary}  {employee.role} </P>
+            
+        </div>
+      </template>
+        <!--using data table-->
+      <div style="height: 150px;">
+        <lightning-datatable
+                key-field="id"
+                data={employees}
+                columns={columns}>
+        </lightning-datatable>
+    </div>  
+    </template>
+
+    <template if:false={isFirstTime}>
+        <template for:each={filterEmployeeArray} for:item="employee">
+          <div key={employee.id}>
+              <P>{employee.name} {employee.salary}  {employee.role} </P>
+          </div>
+        </template>
+        <lightning-datatable
+        key-field="id"
+        data={filterEmployeeArray}
+        columns={columns}>
+            </lightning-datatable>
+      </template>
+    </lightning-card>
+</template>

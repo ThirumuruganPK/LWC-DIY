@@ -1,0 +1,60 @@
+<template>
+    <lightning-card  title="Employee Information Slider">
+      <!--
+      <lightning-button-icon
+                    slot="actions"
+                    icon-name="utility:refresh"
+                    variant="bare"
+                    onclick={hadleEmployeeDataFetch}
+                    alternative-text="Referesh">
+                </lightning-button-icon>
+          -->
+                <template for:each={defaultEmployee} for:item="employee">
+                  <div key={employee.id}>
+        <div class="slds-grid slds-gutters">
+            <div class="slds-col slds-size_1-of-2">
+              <span>
+                  <img src={employee.picture} />
+              </span>
+            </div>
+            <div class="slds-col slds-size_1-of-2">
+              <span>
+                  <h3>Name: {employee.firstName}</h3>
+                  <h3>Email: {employee.email}</h3>
+              </span>
+            </div>
+          
+          </div>
+        </div>
+      </template>
+        <div slot="footer">
+            <lightning-button variant="brand" label="Prev" onclick={handlePrev}></lightning-button>
+            <lightning-button variant="brand" label="Next"></lightning-button>
+        </div>
+    </lightning-card>
+</template>
+<!--
+  Part 1:What is an Array in JavaScript?
+              How to Create an Array in JavaScript
+              How to Get Elements from an Array in JS
+              How to Add Elements to an Array in JS
+              How to Remove Elements from an Array in JS
+              How to Copy and Clone an Array in JS
+              How to Determine if a Value is an Array in JS
+
+  Part 2: Array Destructuring in JavaScript?
+              How to Assign a Default Value to a Variable
+              How to Skip a Value in an Array
+              Nested Array Destructuring in JS
+              How to Use the Spread Syntax and Rest Parameter in JavaScript
+              Destructuring Use Cases in JavaScript
+              How to Swap Values with Destructuring
+              How to Merge Arrays
+
+  Part 3: JavaScript Array Methods?
+              How to Create, Remove, Update, and Access Arrays in JavaScript
+              Static Array Methods in JavaScript
+              Array Iterator Methods in JavaScript
+              Proposed Array Methods
+-->
+

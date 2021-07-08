@@ -1,0 +1,80 @@
+<template>
+    <lightning-card title="Employee Informations">
+        <!--- This is for the pull the employee detail from API-->
+                <lightning-button-icon
+                    slot="actions"
+                    icon-name="utility:refresh"
+                    variant="bare"
+                    onclick={handleGetData}
+                    alternative-text="Referesh">
+                </lightning-button-icon>
+        <!--- This is for the image showing-->
+        <template if:true={isEmployee}>
+                  <template for:each={employees} for:item="employee">
+                        <div key={employee.id}>
+                            <!--
+                            {employee.firstName}
+                            {employee.lastName}
+                            {employee.title}
+                            {employee.mobilePhone}
+                            {employee.phone}
+                            {employee.email}
+                            {employee.picture}    
+                            -->
+                            <div class="slds-grid slds-gutters slds" >
+                                <div class="slds-col slds-large-size_12-of-12 slds-medium-size_6-of-12 slds-size_1-of-12">
+                                        <div class="slds-col slds-large-size_4-of-12">
+                                                <lightning-carousel-image
+                                                
+                                                    src = {employee.picture}
+                                                    header={employee.firstName}
+                                                    description = {employee.title}
+                                                    href = "javascript:void(0);" style="float: left;">
+                                            </lightning-carousel-image>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                  </template>
+                </template>
+
+                  <!--- This is for the image showing-->
+                  <template if:false={IsEmployee}>
+                  <template for:each={searchEmployee} for:item="employee">
+                    <div key={employee.id}>
+                        <!--
+                        {employee.firstName}
+                        {employee.lastName}
+                        {employee.title}
+                        {employee.mobilePhone}
+                        {employee.phone}
+                        {employee.email}
+                        {employee.picture}    
+                        -->
+                        <div class="slds-grid slds-gutters slds" >
+                            <div class="slds-col slds-large-size_12-of-12 slds-medium-size_6-of-12 slds-size_1-of-12">
+                                    <div class="slds-col slds-large-size_4-of-12">
+                                            <lightning-carousel-image
+                                                src = {employee.picture}
+                                                header={employee.firstName}
+                                                description = {employee.title}
+                                                href = "javascript:void(0);" style="float: left;">
+                                        </lightning-carousel-image>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+              </template>
+            </template>
+          
+          <!-- This is for the  Search name -->
+          <div class="slds-grid slds-gutters slds">
+            <div class="slds-col slds-large-size_12-of-12 slds-medium-size_6-of-12 slds-size_1-of-12" >
+                <div class="slds-p-top_large slds-align_absolute-center">
+                    <lightning-input type="text"  placeholder="type name here..." class="slds-m-left_x-small input1"></lightning-input>
+                    <lightning-button variant="brand" label="Find"  class="slds-m-left_x-small slds-m-top_medium" onclick={handleClick}></lightning-button>
+                </div>
+            </div>
+          </div>
+    </lightning-card>
+</template>

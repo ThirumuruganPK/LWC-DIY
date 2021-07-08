@@ -1,0 +1,27 @@
+<template>
+    <lightning-card title="To-Do List">
+
+        <div class="slds-box slds-p-around_none slds-m-top_x-small slds-m-bottom_medium slds-m-horizontal_none">
+            <lightning-layout>
+                <template for:each={tasks} for:item="eachTask">
+                    <div key={eachTask}>
+                <lightning-layout-item padding="around-small" >
+                    <div class="custom-box slds-box slds-p-around_medium slds-text-align_center">
+                        <span class="eachTask">{eachTask}</span>
+                        <lightning-button-icon icon-name="utility:delete" name={eachTask} onclick={handleDelete}  alternative-text="Settings"></lightning-button-icon>
+                    </div>
+                </lightning-layout-item>
+            </div>
+        </template>
+            </lightning-layout>
+        </div>
+        <div slot="footer">
+                <lightning-input class="" name="input1" type="text" value={inputTask} placeholder="Enter Task" onchange={handleInput}></lightning-input>
+                <br/>
+                <lightning-button variant="success" label="Add Task" onclick={handleClick} ></lightning-button>
+        
+            </div>
+
+            
+    </lightning-card>
+</template>

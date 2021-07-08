@@ -1,0 +1,16 @@
+<template>
+<lightning-card title="Simple Calculator">
+<div class="slds-m-around_small">
+    <lightning-input label="input 1#" value ={input1} onchange={getInput1}></lightning-input>
+    <lightning-input label="input 2#" value ={input2} onchange={getInput2}></lightning-input>
+</div>
+    <lightning-button onclick={addition}  variant="brand" label="Add" title="Primary action" class="slds-m-left_x-small" ></lightning-button>
+    <lightning-button onclick={subtraction} variant="brand" label="Sub" title="Primary action" class="slds-m-left_x-small"></lightning-button>
+    <lightning-button onclick={multiplication} variant="brand" label="Mul" title="Primary action" class="slds-m-left_x-small"></lightning-button>
+    <lightning-button onclick={division} variant="brand" label="Div" title="Primary action" class="slds-m-left_x-small"></lightning-button>
+    <lightning-button onclick={clear} variant="brand" label="Clear" title="Primary action" class="slds-m-left_x-small"></lightning-button>    
+<div class="slds-text-heading_small slds-text-color_success slds-m-around_small">
+    Answer: {Result}
+</div>
+</lightning-card>
+</template>

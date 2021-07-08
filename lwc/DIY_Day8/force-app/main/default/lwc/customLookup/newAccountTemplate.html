@@ -1,0 +1,73 @@
+<template>
+    <lightning-card >
+        <section role="dialog" tabindex="-1" class="slds-modal slds-fade-in-open slds-modal_medium" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1">
+            <div class="slds-modal__container">
+            <header class="slds-modal__header">
+                <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close" onclick={handleCancel}>
+                    <lightning-icon icon-name="utility:close" alternative-text="close" size="x-small" variant="error"></lightning-icon>
+                  </button>
+            <h2 id="modal-heading-01" class="slds-modal__title slds-hyphenate">New Account Creation</h2>
+            </header>
+            <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+           
+            <lightning-card >
+                <!--<lightning-record-form object-api-name={objectApiName} fields={fieldList} oncancel={handleCancel} onsuccess={handleAccountCreate} columns="2" ></lightning-record-form> -->
+                <div class="slds-grid slds-gutters">
+                    <div class="slds-col slds-size_1-of-2">
+                        <div class="slds-m-around_medium">
+                            <lightning-input type="text" variant="standard" name="Name" label="Account Name" placeholder="Type Your Account Name" onchange={handleAccountCreateValues} required></lightning-input>
+                            <br/>
+                            <lightning-input type="text" variant="standard" name="Contact Name" label="Contact Name" placeholder="Type Your Contact Name" onchange={handleAccountCreateValues} ></lightning-input>
+                            <br/>
+                            <lightning-input type="tel" variant="standard" name="Phone" label="Phone" placeholder="Type Your Phone Number" onchange={handleAccountCreateValues} required></lightning-input>
+                            <br/>
+                            <lightning-input type="email" variant="standard" name="Email 1" label="Email 1" placeholder="Type Your Email Address" onchange={handleAccountCreateValues} required></lightning-input>
+                            <br/>
+                            <lightning-input type="email" variant="standard" name="Email 2" label="Email 2" placeholder="Type Your Alternative Email Address" onchange={handleAccountCreateValues}></lightning-input>
+                            <br/>
+                            <lightning-combobox
+                                name="Haulbrooke Regional Base"
+                                label="Haulbrooke Regional Base"
+                                value={accHaulbrookeRegion}
+                                placeholder="Select the Regional Base"
+                                options={haulbrookeRegions}
+                                onchange={handlehaulbrookeRegions}
+                                required>
+                            </lightning-combobox>
+                        </div>
+                    </div>
+                    <div class="slds-col slds-size_1-of-2">
+                        <div class="slds-m-around_medium">
+                            <lightning-input type="number" variant="standard" name="Card Number" label="Card Number" placeholder="Type Your Card Number" onchange={handleAccountCreateValues} required></lightning-input>
+                            <br/>
+                            <lightning-input type="number" variant="standard" name="Expiration Month" label="Expiration Month" placeholder="Type Your Card Expire Month" max="12" max-length="2" onchange={handleAccountCreateValues} required></lightning-input>
+                            <br/>
+                            <lightning-input type="number" variant="standard" name="Expiration Year" label="Expiration Year" placeholder="Type Your Card Expire Year" max-length="4" onchange={handleAccountCreateValues} required></lightning-input>
+                            <br/>
+                            <lightning-input type="number" variant="standard" name="Security Code" label="Security Code" placeholder="Type Your Security Code" onchange={handleAccountCreateValues} required></lightning-input>
+                            <br/>
+                            <lightning-input type="number" variant="standard" name="Billing Zip Code" label="Billing Zip Code" placeholder="Type Your Billing Zip Code" onchange={handleAccountCreateValues} required></lightning-input>
+                            <br/>
+                            <lightning-textarea name="Description" label="Description" placeholder="Type Your Description" onchange={handleAccountCreateValues} ></lightning-textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="slds-grid slds-gutters">
+                    <div class="slds-col slds-size_1-of-1">
+                        <div class="slds-m-top_medium slds-align_absolute-center" style="height:5rem">
+                            <lightning-button variant="brand" label="Save" title="Save" onclick={handleAccountCreate}></lightning-button>
+                            <span  class="slds-m-left_medium"></span>
+                            <lightning-button variant="destructive" label="Cancel" title="Cancel" onclick={handleCancel}></lightning-button>
+                        </div>
+                    </div>
+                </div>
+            </lightning-card>
+
+            </div>
+            </div>
+            </section>
+            <div class="slds-backdrop slds-backdrop_open"></div>
+    </lightning-card>
+
+    
+</template>

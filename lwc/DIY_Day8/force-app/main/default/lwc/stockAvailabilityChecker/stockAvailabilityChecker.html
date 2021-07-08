@@ -1,0 +1,42 @@
+<template>
+    <lightning-card title="Stock Available">
+        <div class="slds-m-around_small">
+            <lightning-input label="input 1#" value={tempStockValue}  placeholder="Enter Stock Availability" onchange={handleInput1}></lightning-input>
+        </div>
+        <lightning-button onclick={handleClear} variant="brand" label="Clear" title="Primary action" class="slds-m-left_x-small"></lightning-button>    
+
+    </lightning-card>
+
+    <!--This template is used to show the product detatils-->
+    <template if:true={isShow}>
+        <lightning-card title="Product Details">
+            <div class="slds-m-around_small">
+                {product.name}
+                {product.price}
+                {product.stock}
+            </div>
+            <div style="height: 150px;">
+                <lightning-datatable
+                        key-field="id"
+                        data={data}
+                        columns={columns}>
+                </lightning-datatable>
+            </div>    
+        </lightning-card>
+    </template>
+
+    <!--This template is used to show the product not available msg-->
+    <template if:false={isShow}>
+        <lightning-card title="Alert Msg">
+            <div class="slds-m-around_small">
+                    "No Stock Availeble"
+            </div>
+        </lightning-card>
+    </template>
+
+    <br/>
+    <hr>
+    <br/>
+
+
+</template>

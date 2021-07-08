@@ -1,0 +1,10 @@
+<template>
+    <lightning-card  variant="Narrow"  title="Account Details" icon-name="standard:account">
+        <lightning-button-icon  icon-name="utility:down" variant="border-filled" alternative-text="Show More" slot="actions"></lightning-button-icon>
+        <template if:true={accountData}>   
+        <h1>Name: {accountData.fields.Name.value}</h1>
+            <h1>Industry:{accountData.fields.Industry.value} </h1>
+            </template>
+            <p slot="footer">Card Footer</p>
+    </lightning-card>
+</template>

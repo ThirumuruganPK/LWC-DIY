@@ -1,0 +1,17 @@
+<template>
+    <lightning-card title="New Contact">
+        <div class="slds-p-around_medium lgc-bg">
+            <lightning-input type="text" label="First Name"></lightning-input>
+            <lightning-input type="text" label="Last Name"></lightning-input>
+            <lightning-combobox
+            name="city"
+            label="City"
+            value={value}
+            placeholder="Select City"
+            options={options}
+            onchange={handleChange} ></lightning-combobox>
+            <br/>
+        <lightning-button label="Cancel" variant="destructive" onclick={handleCanceContact}></lightning-button>
+        </div>
+    </lightning-card>
+</template>
